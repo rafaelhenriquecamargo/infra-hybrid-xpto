@@ -1,17 +1,25 @@
 # Infraestrutura Híbrida - XPTO
 
 Documentação do projeto de arquitetura híbrida para a empresa XPTO.
+
 📁 Estrutura de Pastas
 
 documentos/
+
 ├── arquitetura.md          # Visão da arquitetura e tecnologias
+
 ├── finops.md               # Estratégias de otimização de custos
+
 ├── dr-plan.md              # Plano de Disaster Recovery
+
 ├── monitoramento.md        # Monitoramento e Observabilidade
+
 └── osi-camadas.md          # Aplicação do Modelo OSI
 
 terraform/
+
 ├── main.tf                 # Provisionamento com Terraform
+
 └── variables.tf            # Variáveis reutilizáveis
 
 ✅ Descrição Geral

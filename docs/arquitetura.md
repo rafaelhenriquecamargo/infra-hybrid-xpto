@@ -1,4 +1,4 @@
-## Arquitetura
+Arquitetura da Solução Híbrida - XPTO
 
 🎯 Objetivo
 

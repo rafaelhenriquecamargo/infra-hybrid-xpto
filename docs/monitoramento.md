@@ -39,3 +39,6 @@ Visibilidade ponta-a-ponta (usuário → app → banco → infra)
 Alertas por serviço (não só por infra)
 
 Automação de resposta com Azure Alerts + Logic Apps ou scripts
+
+![image](https://github.com/user-attachments/assets/9d03476d-900f-49b2-8078-f0f9d1c8779d)
+

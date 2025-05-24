@@ -1,42 +1,40 @@
-variable "location" {
-  description = "Região onde os recursos serão criados"
-  type        = string
-  default     = "East US"
+provider "azurerm" {
+  features {}
 }
 
-variable "resource_group_name" {
-  description = "Nome do Resource Group principal"
-  type        = string
-  default     = "rg-xpto-hybrid"
+resource "azurerm_resource_group" "main" {
+  name     = var.resource_group_name
+  location = var.location
 }
 
-variable "vnet_name" {
-  description = "Nome da VNet"
-  type        = string
-  default     = "vnet-xpto"
+module "network" {
+  source              = "./modules/network"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  vnet_name           = var.vnet_name
+  subnet_name         = var.subnet_name
 }
 
-variable "subnet_name" {
-  description = "Nome da Subnet para o AKS"
-  type        = string
-  default     = "subnet-aks"
+module "aks" {
+  source              = "./modules/aks"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  subnet_id           = module.network.subnet_id
+  aks_name            = var.aks_name
 }
 
-variable "aks_name" {
-  description = "Nome do Cluster AKS"
-  type        = string
-  default     = "aks-xpto"
+module "functions" {
+  source              = "./modules/functions"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  storage_account     = var.storage_account_name
 }
 
-variable "storage_account_name" {
-  description = "Nome da Storage Account para Azure Functions"
-  type        = string
-  default     = "xptostoragefunc"
+module "keyvault" {
+  source              = "./modules/keyvault"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  keyvault_name       = var.keyvault_name
 }
 
-variable "keyvault_name" {
-  description = "Nome do Azure Key Vault"
-  type        = string
-  default     = "kv-xpto"
-}
 
